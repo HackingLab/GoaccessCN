@@ -72,6 +72,24 @@
 
 <p><code># make install</code></p>
 
+<h3>
+<a id="配置选项" class="anchor" href="#%E9%85%8D%E7%BD%AE%E9%80%89%E9%A1%B9" aria-hidden="true"><span class="octicon octicon-link"></span></a>配置选项</h3>
+
+<p>使用命令: <code>./configure --help</code>可以查看帮助</p>
+
+<p><code>--enable-debug</code>
+Compile with debugging symbols and turn off compiler optimizations.
+<code>--enable-utf8</code>
+Compile with wide character support. Ncursesw is required.
+<code>--enable-geoip</code>
+打开地理位置支持,需要安装GeoIP库
+<code>--enable-tcb=&lt;memhash|btree&gt;</code>
+Compile with Tokyo Cabinet storage support. memhash will utilize Tokyo Cabinet's on-memory hash database. btree will utilize Tokyo Cabinet's on-disk B+ Tree database.
+<code>--disable-zlib</code>
+关闭B+树数据库的zlib压缩
+<code>--disable-bzip</code>
+关闭B+树的bzip2压缩</p>
+
 <hr>
 
 <hr>
