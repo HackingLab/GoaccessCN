@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[]]></title>
+  <link href="http://goacess.hackinglab.cn/atom.xml" rel="self"/>
+  <link href="http://goacess.hackinglab.cn/"/>
+  <updated>2015-08-06T10:32:13+08:00</updated>
+  <id>http://goacess.hackinglab.cn/</id>
+  <author>
+    <name><![CDATA[]]></name>
+    
+  </author>
+  <generator uri="http://www.219.me/">CoderForArt</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[GoAccess中文版介绍]]></title>
+    <link href="http://goacess.hackinglab.cn/StartUp.html"/>
+    <updated>2015-08-06T10:23:57+08:00</updated>
+    <id>http://goacess.hackinglab.cn/StartUp.html</id>
+    <content type="html"><![CDATA[
+<h2 id="toc_0">快速的Web访问日志分析工具</h2>
+
+<h3 id="toc_1">语法</h3>
+
+<pre><code class="language-bash">goaccess -f log [-c][-r][-m][-h][-q][-d][-g][-a][-o csv|json][-e IP_ADDRESS][...]
+</code></pre>
+
+<h2 id="toc_2">安装编译方法</h2>
+
+<pre><code class="language-bash">$ wget http://tar.goaccess.io/goaccess-0.9.2.tar.gz
+$ tar -xzvf goaccess-0.9.2.tar.gz
+$ cd goaccess-0.9.2/
+$ ./configure --enable-geoip --enable-utf8
+$ make
+$ make install
+</code></pre>
+
+<h2 id="toc_3">依赖库</h2>
+
+<pre><code>Distro NCurses GLib &gt;= 2.0.0 GeoIP (optional) Tokyo Cabinet (optional)
+Ubuntu/Debian libncursesw5-dev libglib2.0-dev libgeoip-dev libtokyocabinet-dev
+Fedora/RHEL/CentOS ncurses-devel glib2-devel geoip-devel tokyocabinet-devel
+Arch Linux ncurses glib2 geoip compile from source
+Gentoo sys-libs/ncurses dev-libs/glib:2 dev-libs/geoip dev-db/tokyocabinet
+</code></pre>
+
+<h2 id="toc_4">GitHub安装方法</h2>
+
+<pre><code class="language-bash">$ git clone https://github.com/HackingLab/goaccesscn.git
+$ cd goaccess
+$ autoreconf -fi
+$ ./configure --enable-geoip --enable-utf8
+$ make
+$ make install
+</code></pre>
+
+<h2 id="toc_5">配置选项</h2>
+
+<pre><code>使用命令: ./configure --help可以查看帮助
+--enable-debug Compile with debugging symbols and turn off compiler optimizations.
+--enable-utf8 Compile with wide character support. Ncursesw is required.
+--enable-geoip 打开地理位置支持,需要安装GeoIP库
+--enable-tcb=&lt;memhash|btree&gt; Compile with Tokyo Cabinet storage support. memhash will utilize Tokyo Cabinet&#39;s on-memory hash database. btree will utilize Tokyo Cabinet&#39;s on-disk B+ Tree database.
+--disable-zlib 关闭B+树数据库的zlib压缩
+--disable-bzip 关闭B+树的bzip2压缩
+</code></pre>
+
+]]></content>
+  </entry>
+  
+</feed>
