@@ -141,41 +141,52 @@
 			
 			<h2 id="toc_0">快速的Web访问日志分析工具</h2>
 
-<h3 id="toc_1">语法</h3>
+<h3 id="toc_1">HTML报表截图</h3>
+
+<p><img src="media/14388278374061/14388315314298.jpg" alt=""/></p>
+
+<h3 id="toc_2">语法</h3>
 
 <pre><code class="language-bash">goaccess -f log [-c][-r][-m][-h][-q][-d][-g][-a][-o csv|json][-e IP_ADDRESS][...]
 </code></pre>
 
-<h2 id="toc_2">安装编译方法</h2>
-
-<pre><code class="language-bash">$ wget http://tar.goaccess.io/goaccess-0.9.2.tar.gz
-$ tar -xzvf goaccess-0.9.2.tar.gz
-$ cd goaccess-0.9.2/
-$ ./configure --enable-geoip --enable-utf8
-$ make
-$ make install
-</code></pre>
-
 <h2 id="toc_3">依赖库</h2>
 
-<pre><code>Distro NCurses GLib &gt;= 2.0.0 GeoIP (optional) Tokyo Cabinet (optional)
-Ubuntu/Debian libncursesw5-dev libglib2.0-dev libgeoip-dev libtokyocabinet-dev
-Fedora/RHEL/CentOS ncurses-devel glib2-devel geoip-devel tokyocabinet-devel
-Arch Linux ncurses glib2 geoip compile from source
-Gentoo sys-libs/ncurses dev-libs/glib:2 dev-libs/geoip dev-db/tokyocabinet
+<h3 id="toc_4">Distro</h3>
+
+<pre><code>NCurses GLib &gt;= 2.0.0 GeoIP (optional) Tokyo Cabinet (optional)
 </code></pre>
 
-<h2 id="toc_4">GitHub安装方法</h2>
+<h3 id="toc_5">Ubuntu/Debian</h3>
 
-<pre><code class="language-bash">$ git clone https://github.com/HackingLab/goaccesscn.git
-$ cd goaccess
-$ autoreconf -fi
+<pre><code>libncursesw5-dev libglib2.0-dev libgeoip-dev libtokyocabinet-dev
+</code></pre>
+
+<h3 id="toc_6">Fedora/RHEL/CentOS</h3>
+
+<pre><code>ncurses-devel glib2-devel geoip-devel tokyocabinet-devel
+</code></pre>
+
+<h3 id="toc_7">Arch Linux</h3>
+
+<pre><code>ncurses glib2 geoip compile from source
+</code></pre>
+
+<h3 id="toc_8">Gentoo</h3>
+
+<pre><code>sys-libs/ncurses dev-libs/glib:2 dev-libs/geoip dev-db/tokyocabinet
+</code></pre>
+
+<h2 id="toc_9">GitHub安装方法</h2>
+
+<pre><code class="language-bash">$ git clone https://github.com/HackingLab/GoaccessCN.git
+$ cd GoaccessCN
 $ ./configure --enable-geoip --enable-utf8
 $ make
-$ make install
+$ sudo make install
 </code></pre>
 
-<h2 id="toc_5">配置选项</h2>
+<h2 id="toc_10">配置选项说明</h2>
 
 <pre><code>使用命令: ./configure --help可以查看帮助
 --enable-debug Compile with debugging symbols and turn off compiler optimizations.
@@ -185,6 +196,74 @@ $ make install
 --disable-zlib 关闭B+树数据库的zlib压缩
 --disable-bzip 关闭B+树的bzip2压缩
 </code></pre>
+
+<h2 id="toc_11">使用方法</h2>
+
+<h3 id="toc_12">指定配置文件(HTML)</h3>
+
+<pre><code class="language-bash">goaccess -f &#39;access_log&#39; -p ./goaccess.conf -a &gt;~/test.html
+</code></pre>
+
+<h3 id="toc_13">不指定配置文件(HTML)</h3>
+
+<pre><code class="language-bash">goaccess -f access.log -a &gt; report.html
+</code></pre>
+
+<h3 id="toc_14">JSON格式输出(不支持中文)</h3>
+
+<pre><code class="language-bash">goaccess -f access.log -a -d -o json &gt; report.json
+</code></pre>
+
+<h3 id="toc_15">JSON格式输出(不支持中文)</h3>
+
+<pre><code class="language-bash">goaccess -f access.log -o csv &gt; report.csv
+</code></pre>
+
+<h2 id="toc_16">自定义日志格式</h2>
+
+<p><strong><em>log_format</em></strong> The log_format variable followed by a space or \t for tab-delimited, specifies the log format string.</p>
+
+<p><strong><em>%x</em></strong> A date and time field matching the time<u>format and date</u>format variables. This is used when a timestamp is given instead of the date and time being in two separated variables.</p>
+
+<p><strong><em>%t</em></strong> time field matching the time_format variable.</p>
+
+<p><strong><em>%d</em></strong> date field matching the date_format variable.</p>
+
+<p><strong><em>%h</em></strong> host (the client IP address, either IPv4 or IPv6)</p>
+
+<p><strong><em>%r</em></strong> The request line from the client. This requires specific delimiters around the request (as single quotes, double quotes, or anything else) to be parsable. If not, we have to use a combination of special format specifiers as %m %U %H.</p>
+
+<p><strong><em>%m</em></strong> The request method.</p>
+
+<p><strong><em>%U</em></strong> The URL path requested (including any query string).</p>
+
+<p><strong><em>%H</em></strong> The request protocol.</p>
+
+<p><strong><em>%s</em></strong> The status code that the server sends back to the client.</p>
+
+<p><strong><em>%b</em></strong> The size of the object returned to the client.</p>
+
+<p><strong><em>%R</em></strong> The <q>Referer</q> HTTP request header.</p>
+
+<p><strong><em>%u</em></strong> The user-agent HTTP request header.</p>
+
+<p><strong><em>%D</em></strong> The time taken to serve the request, in microseconds.</p>
+
+<p><strong><em>%T</em></strong> The time taken to serve the request, in seconds with milliseconds resolution.</p>
+
+<p><strong><em>%L</em></strong> The time taken to serve the request, in milliseconds as a decimal number.</p>
+
+<p><strong><em>%^</em></strong> Ignore this field.</p>
+
+<h4 id="toc_17">GoAccess 日志中必须具备的几个字段</h4>
+
+<p>a valid IPv4/6 <strong><em>%h</em></strong><br/>
+a valid date <strong><em>%d</em></strong><br/>
+the request <strong><em>%r</em></strong></p>
+
+<h3 id="toc_18">其他说明请参考官方文档</h3>
+
+<p><a href="http://www.goaccess.io/man">官方文档</a></p>
 
 
 			
